@@ -1,0 +1,1758 @@
+{
+  "paragraphs": [
+    {
+      "text": "%md\n## 环境检查\n- Spark\n- Elasticsearch\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 21:13:14.466",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003e环境检查\u003c/h2\u003e\n\u003cul\u003e\n  \u003cli\u003eSpark\u003c/li\u003e\n  \u003cli\u003eElasticsearch\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540386737980_-1438650744",
+      "id": "20181024-211217_1255811687",
+      "dateCreated": "2018-10-24 21:12:17.980",
+      "dateStarted": "2018-10-24 21:13:14.447",
+      "dateFinished": "2018-10-24 21:13:14.461",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport platform  \nprint(\"Python version:%s\" % platform.python_version())\n\nspark",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 21:20:07.277",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Python version:2.7.15\n\u003cpyspark.sql.session.SparkSession object at 0x103a38450\u003e\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020180_1314497645",
+      "id": "20181012-090044_134631826",
+      "dateCreated": "2018-10-24 16:33:40.181",
+      "dateStarted": "2018-10-24 21:20:07.328",
+      "dateFinished": "2018-10-24 21:20:07.339",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom elasticsearch import Elasticsearch\nes \u003d Elasticsearch()\nes.info(pretty\u003dTrue)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 21:16:20.516",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{u\u0027cluster_name\u0027: u\u0027elasticsearch\u0027, u\u0027cluster_uuid\u0027: u\u0027YCXr_JQFSb6XMNGOX7ThSg\u0027, u\u0027version\u0027: {u\u0027build_date\u0027: u\u00272018-07-20T05:20:23.451332Z\u0027, u\u0027minimum_wire_compatibility_version\u0027: u\u00275.6.0\u0027, u\u0027build_hash\u0027: u\u0027053779d\u0027, u\u0027number\u0027: u\u00276.3.2\u0027, u\u0027lucene_version\u0027: u\u00277.3.1\u0027, u\u0027minimum_index_compatibility_version\u0027: u\u00275.0.0\u0027, u\u0027build_flavor\u0027: u\u0027default\u0027, u\u0027build_snapshot\u0027: False, u\u0027build_type\u0027: u\u0027zip\u0027}, u\u0027name\u0027: u\u0027B2H3QvI\u0027, u\u0027tagline\u0027: u\u0027You Know, for Search\u0027}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020339_1306203583",
+      "id": "20181012-092521_1937146830",
+      "dateCreated": "2018-10-24 16:33:40.339",
+      "dateStarted": "2018-10-24 21:16:20.573",
+      "dateFinished": "2018-10-24 21:16:20.634",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n\n# 加载数据\n# 数据所在路径\nPATH_TO_DATA \u003d \"../data/ml-latest-small\"\n\n# 评分数据\nratings \u003d spark.read.csv(PATH_TO_DATA + \"/ratings.csv\", header\u003dTrue, inferSchema\u003dTrue)\nratings.cache()\n\nprint(\"Number of ratings: %i\" % ratings.count())\nprint(\"Sample of ratings:\")\nratings.show(3)\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:04:15.709",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Number of ratings: 100836\nSample of ratings:\n+------+-------+------+---------+\n|userId|movieId|rating|timestamp|\n+------+-------+------+---------+\n|     1|      1|   4.0|964982703|\n|     1|      3|   4.0|964981247|\n|     1|      6|   4.0|964982224|\n+------+-------+------+---------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020343_989191262",
+      "id": "20181012-090138_2112664898",
+      "dateCreated": "2018-10-24 16:33:40.343",
+      "dateStarted": "2018-10-24 22:04:15.749",
+      "dateFinished": "2018-10-24 22:04:18.915",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql.functions import col\nratings_data \u003d ratings.select(ratings.userId, ratings.movieId, ratings.rating, (ratings.timestamp.cast(\"long\") * 1000).alias(\"timestamp\"))\nratings_data.show(3)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:26:49.489",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------+-------+------+------------------+\n|userId|movieId|rating|         timestamp|\n+------+-------+------+------------------+\n|     1|      1|   4.0|964982703000000000|\n|     1|      3|   4.0|964981247000000000|\n|     1|      6|   4.0|964982224000000000|\n+------+-------+------+------------------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020344_210019780",
+      "id": "20181012-090239_864751319",
+      "dateCreated": "2018-10-24 16:33:40.344",
+      "dateStarted": "2018-10-24 22:26:49.586",
+      "dateFinished": "2018-10-24 22:26:49.918",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nraw_movies \u003d spark.read.csv(PATH_TO_DATA + \"/movies.csv\", header\u003dTrue, inferSchema\u003dTrue)\nprint(\"Number of movie: %i\" % raw_movies.count())\nprint(\"Sample of movie:\")\nraw_movies.show(3, truncate\u003dFalse)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:10:38.215",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Number of movie: 9742\nSample of movie:\n+-------+-----------------------+-------------------------------------------+\n|movieId|title                  |genres                                     |\n+-------+-----------------------+-------------------------------------------+\n|1      |Toy Story (1995)       |Adventure|Animation|Children|Comedy|Fantasy|\n|2      |Jumanji (1995)         |Adventure|Children|Fantasy                 |\n|3      |Grumpier Old Men (1995)|Comedy|Romance                             |\n+-------+-----------------------+-------------------------------------------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020345_-800817640",
+      "id": "20181012-091854_299893387",
+      "dateCreated": "2018-10-24 16:33:40.345",
+      "dateStarted": "2018-10-24 22:10:38.252",
+      "dateFinished": "2018-10-24 22:10:39.088",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom pyspark.sql.functions import udf\nfrom pyspark.sql.types import *\n# define a UDF to convert the raw genres string to an array of genres and lowercase\nextract_genres \u003d udf(lambda x: x.lower().split(\"|\"), ArrayType(StringType()))\n# test it out\nraw_movies.select(\"movieId\", \"title\", extract_genres(\"genres\").alias(\"genres\")).show(3, False)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:10:42.975",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+-----------------------+-------------------------------------------------+\n|movieId|title                  |genres                                           |\n+-------+-----------------------+-------------------------------------------------+\n|1      |Toy Story (1995)       |[adventure, animation, children, comedy, fantasy]|\n|2      |Jumanji (1995)         |[adventure, children, fantasy]                   |\n|3      |Grumpier Old Men (1995)|[comedy, romance]                                |\n+-------+-----------------------+-------------------------------------------------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540390163340_1124728734",
+      "id": "20181024-220923_595385517",
+      "dateCreated": "2018-10-24 22:09:23.340",
+      "dateStarted": "2018-10-24 22:10:43.018",
+      "dateFinished": "2018-10-24 22:10:43.466",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport re\n# define a UDF to extract the release year from the title, and return the new title and year in a struct type\ndef extract_year_fn(title):\n    result \u003d re.search(\"\\(\\d{4}\\)\", title)\n    try:\n        if result:\n            group \u003d result.group()\n            year \u003d group[1:-1]\n            start_pos \u003d result.start()\n            title \u003d title[:start_pos-1]\n            return (title, year)\n        else:\n            return (title, 1970)\n    except:\n        print(title)\n\nextract_year \u003d udf(extract_year_fn,\\\n                   StructType([StructField(\"title\", StringType(), True),\\\n                               StructField(\"release_date\", StringType(), True)]))\n    \n# test out our function\ns \u003d \"Jumanji (1995)\"\nextract_year_fn(s)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:10:46.806",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "(\u0027Jumanji\u0027, \u00271995\u0027)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540390130310_482785709",
+      "id": "20181024-220850_961430473",
+      "dateCreated": "2018-10-24 22:08:50.311",
+      "dateStarted": "2018-10-24 22:10:46.865",
+      "dateFinished": "2018-10-24 22:10:46.892",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nmovies \u003d raw_movies.select(\n    \"movieId\", extract_year(\"title\").title.alias(\"title\"),\\\n    extract_year(\"title\").release_date.alias(\"release_date\"),\\\n    extract_genres(\"genres\").alias(\"genres\"))\nprint(\"Cleaned movie data:\")\nmovies.show(3, truncate\u003dFalse)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:10:50.735",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Cleaned movie data:\n+-------+----------------+------------+-------------------------------------------------+\n|movieId|title           |release_date|genres                                           |\n+-------+----------------+------------+-------------------------------------------------+\n|1      |Toy Story       |1995        |[adventure, animation, children, comedy, fantasy]|\n|2      |Jumanji         |1995        |[adventure, children, fantasy]                   |\n|3      |Grumpier Old Men|1995        |[comedy, romance]                                |\n+-------+----------------+------------+-------------------------------------------------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540390207747_1247201308",
+      "id": "20181024-221007_602201936",
+      "dateCreated": "2018-10-24 22:10:07.747",
+      "dateStarted": "2018-10-24 22:10:50.780",
+      "dateFinished": "2018-10-24 22:10:52.074",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nlink_data \u003d spark.read.csv(PATH_TO_DATA + \"/links.csv\", header\u003dTrue, inferSchema\u003dTrue)\n# join movies with links to get TMDB id\nmovies_data \u003d movies.join(link_data, movies.movieId \u003d\u003d link_data.movieId)\\\n    .select(movies.movieId, movies.title, movies.release_date, movies.genres, link_data.tmdbId)\nnum_movies \u003d movie_data.count()\nprint(\"Cleaned movie data with tmdbId links:\")\nmovies_data.show(3, truncate\u003dFalse)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:26:13.897",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Cleaned movie data with tmdbId links:\n+-------+----------------+------------+-------------------------------------------------+------+\n|movieId|title           |release_date|genres                                           |tmdbId|\n+-------+----------------+------------+-------------------------------------------------+------+\n|1      |Toy Story       |1995        |[adventure, animation, children, comedy, fantasy]|862   |\n|2      |Jumanji         |1995        |[adventure, children, fantasy]                   |8844  |\n|3      |Grumpier Old Men|1995        |[comedy, romance]                                |15602 |\n+-------+----------------+------------+-------------------------------------------------+------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540390290239_-1164532851",
+      "id": "20181024-221130_710745563",
+      "dateCreated": "2018-10-24 22:11:30.239",
+      "dateStarted": "2018-10-24 22:26:14.041",
+      "dateFinished": "2018-10-24 22:26:16.037",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### 加载数据到Elasticsearch",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:16:13.199",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003e加载数据到Elasticsearch\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020349_-576071278",
+      "id": "20181012-092451_1487163005",
+      "dateCreated": "2018-10-24 16:33:40.349",
+      "dateStarted": "2018-10-24 22:16:13.203",
+      "dateFinished": "2018-10-24 22:16:13.381",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# 已存在索引删除\nratingsIdx \u003d \"ml_ratings\"\nmoviesIdx \u003d \"ml_movies\"\nusersIdx \u003d \"ml_users\"\n\nes.indices.delete(index\u003dratingsIdx, ignore\u003d[400, 404])\nes.indices.delete(index\u003dmoviesIdx, ignore\u003d[400, 404])\nes.indices.delete(index\u003dusersIdx, ignore\u003d[400, 404])\n\n# 创建索引\ncreate_ratings_index \u003d {\n    \"settings\": {\n        \"analysis\": {\n            \"analyzer\": {\n                # this configures the custom analyzer we need to parse vectors such that the scoring\n                # plugin will work correctly\n                \"payload_analyzer\": {\n                    \"type\": \"custom\",\n                    \"tokenizer\":\"whitespace\",\n                    \"filter\":\"delimited_payload_filter\"\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"ratings\": {\n          # this mapping definition sets up the fields for the rating events\n          \"properties\": {\n                \"timestamp\": {\n                    \"type\": \"date\"\n                },\n                \"userId\": {\n                    \"type\": \"integer\"\n                },\n                \"movieId\": {\n                    \"type\": \"integer\"\n                },\n                \"rating\": {\n                    \"type\": \"double\"\n                }\n            }  \n        }\n    }\n}\n# create index with the settings and mappings above\nes.indices.create(index\u003dratingsIdx, body\u003dcreate_ratings_index)\n\ncreate_movies_index \u003d {\n    \"settings\": {\n        \"analysis\": {\n            \"analyzer\": {\n                # this configures the custom analyzer we need to parse vectors such that the scoring\n                # plugin will work correctly\n                \"payload_analyzer\": {\n                    \"type\": \"custom\",\n                    \"tokenizer\":\"whitespace\",\n                    \"filter\":\"delimited_payload_filter\"\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"movies\": {\n            # this mapping definition sets up the metadata fields for the movies\n            \"properties\": {\n                \"movieId\": {\n                    \"type\": \"integer\"\n                },\n                \"tmdbId\": {\n                    \"type\": \"keyword\"\n                },\n                \"genres\": {\n                    \"type\": \"keyword\"\n                },\n                \"release_date\": {\n                    \"type\": \"date\",\n                    \"format\": \"year\"\n                },\n                \"embedding_vector\": {\n                    \"type\": \"binary\",\n                    \"doc_values\": True\n                }\n            }\n        }\n    }\n}\n# create index with the settings and mappings above\nes.indices.create(index\u003dmoviesIdx, body\u003dcreate_movies_index)\n\ncreate_users_index \u003d {\n    \"settings\": {\n        \"analysis\": {\n            \"analyzer\": {\n                # this configures the custom analyzer we need to parse vectors such that the scoring\n                # plugin will work correctly\n                \"payload_analyzer\": {\n                    \"type\": \"custom\",\n                    \"tokenizer\":\"whitespace\",\n                    \"filter\":\"delimited_payload_filter\"\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"users\": {\n            # this mapping definition sets up the metadata fields for the users\n            \"properties\": {\n                \"userId\": {\n                    \"type\": \"integer\"\n                },\n                \"embedding_vector\": {\n                    \"type\": \"binary\",\n                    \"doc_values\": True\n                }\n            }\n        }\n    }\n}\n\n# create index with the settings and mappings above\nes.indices.create(index\u003dusersIdx, body\u003dcreate_users_index)\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:28:26.741",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{u\u0027index\u0027: u\u0027ml_users\u0027, u\u0027acknowledged\u0027: True, u\u0027shards_acknowledged\u0027: True}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020351_317176295",
+      "id": "20181012-123741_1244277372",
+      "dateCreated": "2018-10-24 16:33:40.352",
+      "dateStarted": "2018-10-24 22:28:26.775",
+      "dateFinished": "2018-10-24 22:28:29.837",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# write ratings data\nratings_data.write.format(\"es\").save(ratingsIdx + \"/ratings\")\n# check write went ok\nprint(\"Dataframe count: %d\" % ratings_data.count())\nprint(\"ES index count:  %d\" % es.count(index\u003dratingsIdx, doc_type\u003d\"ratings\")[\u0027count\u0027])",
+      "user": "admin",
+      "dateUpdated": "2018-10-31 19:04:17.760",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Fail to execute line 2: ratings_data.write.format(\"es\").save(ratingsIdx + \"/ratings\")\nTraceback (most recent call last):\n  File \"/var/folders/vb/n09xdtds6cx6q5srg5sxyd600000gn/T/zeppelin_pyspark-8061867997029214215.py\", line 375, in \u003cmodule\u003e\n    exec(code, _zcUserQueryNameSpace)\n  File \"\u003cstdin\u003e\", line 2, in \u003cmodule\u003e\nNameError: name \u0027ratings_data\u0027 is not defined\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020354_-620919957",
+      "id": "20181012-123851_2005845429",
+      "dateCreated": "2018-10-24 16:33:40.354",
+      "dateStarted": "2018-10-31 19:04:18.195",
+      "dateFinished": "2018-10-31 19:04:53.268",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# test things out by retrieving a few rating event documents from Elasticsearch\nes.search(index\u003dratingsIdx, doc_type\u003d\"ratings\", q\u003d\"*\", size\u003d3)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:29:47.948",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{u\u0027hits\u0027: {u\u0027hits\u0027: [{u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027ratings\u0027, u\u0027_id\u0027: u\u0027c7R6pmYB_4ioOwcM1klB\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 1, u\u0027userId\u0027: 1, u\u0027timestamp\u0027: 964982703000000000, u\u0027rating\u0027: 4.0}, u\u0027_index\u0027: u\u0027ml_ratings\u0027}, {u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027ratings\u0027, u\u0027_id\u0027: u\u0027dbR6pmYB_4ioOwcM1klB\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 6, u\u0027userId\u0027: 1, u\u0027timestamp\u0027: 964982224000000000, u\u0027rating\u0027: 4.0}, u\u0027_index\u0027: u\u0027ml_ratings\u0027}, {u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027ratings\u0027, u\u0027_id\u0027: u\u0027d7R6pmYB_4ioOwcM1klB\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 50, u\u0027userId\u0027: 1, u\u0027timestamp\u0027: 964982931000000000, u\u0027rating\u0027: 5.0}, u\u0027_index\u0027: u\u0027ml_ratings\u0027}], u\u0027total\u0027: 100836, u\u0027max_score\u0027: 1.0}, u\u0027_shards\u0027: {u\u0027successful\u0027: 5, u\u0027failed\u0027: 0, u\u0027skipped\u0027: 0, u\u0027total\u0027: 5}, u\u0027took\u0027: 40, u\u0027timed_out\u0027: False}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020355_994649330",
+      "id": "20181012-130447_1175211663",
+      "dateCreated": "2018-10-24 16:33:40.355",
+      "dateStarted": "2018-10-24 22:29:48.055",
+      "dateFinished": "2018-10-24 22:29:48.138",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nes.count(index\u003dratingsIdx, doc_type\u003d\"ratings\", q\u003d\"timestamp:[2018-10-01 TO 2018-10-10]\")",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:30:01.356",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{u\u0027count\u0027: 0, u\u0027_shards\u0027: {u\u0027successful\u0027: 5, u\u0027failed\u0027: 0, u\u0027skipped\u0027: 0, u\u0027total\u0027: 5}}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020356_-931807081",
+      "id": "20181012-130506_1986461320",
+      "dateCreated": "2018-10-24 16:33:40.356",
+      "dateStarted": "2018-10-24 22:30:01.424",
+      "dateFinished": "2018-10-24 22:30:01.465",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# write movie data, specifying the DataFrame column to use as the id mapping\nmovies_data.write.format(\"es\").option(\"es.mapping.id\", \"movieId\").save(moviesIdx + \"/movies\", )\n# check load went ok\nprint(\"Movies DF count: %d\" % movies_data.count())\nprint(\"ES index count: %d\" % es.count(index\u003dmoviesIdx, doc_type\u003d\"movies\")[\u0027count\u0027])",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:31:28.008",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Movies DF count: 9742\nES index count: 9742\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020357_-1227648094",
+      "id": "20181012-130521_1970086382",
+      "dateCreated": "2018-10-24 16:33:40.357",
+      "dateStarted": "2018-10-24 22:31:28.050",
+      "dateFinished": "2018-10-24 22:31:32.074",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# test things out by searching for movies containing \"matrix\" in the title\nes.search(index\u003dmoviesIdx, doc_type\u003d\"movies\", q\u003d\"title:Jumanji\", size\u003d3)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:51:58.050",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{u\u0027hits\u0027: {u\u0027hits\u0027: [{u\u0027_score\u0027: 10.082274, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u00272\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00271995\u0027, u\u0027movieId\u0027: 2, u\u0027genres\u0027: [u\u0027adventure\u0027, u\u0027children\u0027, u\u0027fantasy\u0027], u\u0027tmdbId\u0027: 8844, u\u0027title\u0027: u\u0027Jumanji\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}, {u\u0027_score\u0027: 5.908066, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u0027179401\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00272017\u0027, u\u0027movieId\u0027: 179401, u\u0027genres\u0027: [u\u0027action\u0027, u\u0027adventure\u0027, u\u0027children\u0027], u\u0027tmdbId\u0027: 353486, u\u0027title\u0027: u\u0027Jumanji: Welcome to the Jungle\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}], u\u0027total\u0027: 2, u\u0027max_score\u0027: 10.082274}, u\u0027_shards\u0027: {u\u0027successful\u0027: 5, u\u0027failed\u0027: 0, u\u0027skipped\u0027: 0, u\u0027total\u0027: 5}, u\u0027took\u0027: 20, u\u0027timed_out\u0027: False}\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020362_-1669153585",
+      "id": "20181012-130538_152879908",
+      "dateCreated": "2018-10-24 16:33:40.362",
+      "dateStarted": "2018-10-24 22:32:27.176",
+      "dateFinished": "2018-10-24 22:32:27.219",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### 训练模型\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 16:33:40.376",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003e训练模型\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020367_-804036609",
+      "id": "20181012-130551_69518639",
+      "dateCreated": "2018-10-24 16:33:40.367",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# 从ES加载数据\nratings_from_es \u003d spark.read.format(\"es\").load(ratingsIdx + \"/ratings\")\nratings_from_es.show(3, truncate\u003dFalse)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:33:17.028",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------+------------------------------+------+\n|movieId|rating|timestamp                     |userId|\n+-------+------+------------------------------+------+\n|216    |5.0   |184196-08-08 09:58:2323.315968|1     |\n|356    |4.0   |184188-10-22 04:38:2323.315968|1     |\n|500    |3.0   |184196-08-08 09:58:2323.315968|1     |\n+-------+------+------------------------------+------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020378_864785750",
+      "id": "20181012-093703_612226292",
+      "dateCreated": "2018-10-24 16:33:40.378",
+      "dateStarted": "2018-10-24 22:33:17.058",
+      "dateFinished": "2018-10-24 22:33:17.341",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# 训练模型\nfrom pyspark.ml.recommendation import ALS\nfrom pyspark.sql.functions import col\nals \u003d ALS(userCol\u003d\"userId\", itemCol\u003d\"movieId\", ratingCol\u003d\"rating\", regParam\u003d0.01, rank\u003d20, seed\u003d12)\nmodel \u003d als.fit(ratings_from_es)\nmodel.userFactors.show(3, truncate\u003dFalse)\nmodel.itemFactors.show(3, truncate\u003dFalse)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:35:21.689",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                                                                                                                                                        |\n+---+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n|10 |[-1.2723869, -1.0404711, 0.6506964, -0.73582673, 0.22156127, -0.24009384, -0.031754926, -0.16319954, 0.31785384, -0.18343225, -0.60733956, 0.30508336, 0.44866762, -0.2556913, 0.19664004, -0.04967511, -0.47266942, -0.45564523, -0.36416867, -0.40033016]     |\n|20 |[-0.28433216, -0.37829804, -0.16935144, 0.11916523, 0.37271932, -0.60682887, -0.20422727, -0.30499074, -0.0016969009, -0.61055446, 0.21076427, -0.16055821, -0.12504587, 0.117336206, -0.30318123, 0.78628904, -0.10786303, -0.23370163, 0.69798315, -0.5178819]|\n|30 |[-0.23606953, 0.633062, 0.37181944, -0.081839345, -0.21889895, -0.007880092, -0.5851275, -0.073204346, 0.40503868, -0.11865048, 0.092291065, -0.20295909, 0.1885159, -0.45528755, -0.37017736, 0.10754289, -0.7331228, -0.24372846, -0.13009647, -0.4474797]    |\n+---+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\nonly showing top 3 rows\n\n+---+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n|id |features                                                                                                                                                                                                                                               |\n+---+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n|10 |[0.07222334, 0.37091365, 0.895914, 0.37958288, 1.3950922, -0.48764274, -0.43439505, -1.3742743, 1.1520847, -0.71016204, 0.54848266, -1.0041186, 1.3872381, 0.46044055, -0.95085746, -0.16584957, -1.5119628, 0.28585288, -0.84747005, -2.846497]       |\n|20 |[-0.40369913, 0.5019649, 0.49645975, 0.63982797, 0.9752351, -0.51781374, -1.5160197, -0.43656018, 0.8211215, -1.2826794, -0.17578642, -0.6631408, 0.86885643, -0.8026098, -0.8935777, 0.31483647, -1.4955965, 0.27612197, -1.2322841, -1.6372539]      |\n|30 |[-0.65819603, -0.59065115, -0.22653005, 0.75568867, 1.5564847, 0.7156925, -0.59566873, -2.0343528, -0.07820631, -1.0511626, -0.55797243, 0.3035304, -0.61881423, 0.07487136, -1.0978539, 0.085205905, 0.11533345, -0.092757374, -0.5954549, -0.9980841]|\n+---+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020382_-125522920",
+      "id": "20181012-130632_1313327758",
+      "dateCreated": "2018-10-24 16:33:40.382",
+      "dateStarted": "2018-10-24 22:35:21.839",
+      "dateFinished": "2018-10-24 22:35:31.793",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nimport base64\nimport numpy as np\nfrom pyspark.sql.functions import udf\n\n# Base64编码\ndbig \u003d np.dtype(\u0027\u003ef8\u0027)\n\ndef decode_float_list(base64_string):\n    bytes \u003d base64.b64decode(base64_string)\n    return np.frombuffer(bytes, dtype\u003ddbig).tolist()\n\ndef encode_array(arr):\n    base64_str \u003d base64.b64encode(np.array(arr).astype(dbig)).decode(\"utf-8\")\n    return base64_str\n    \nvector_encode \u003d udf(encode_array, StringType())",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:35:40.135",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020393_1900584589",
+      "id": "20181023-145839_373289676",
+      "dateCreated": "2018-10-24 16:33:40.393",
+      "dateStarted": "2018-10-24 22:35:40.192",
+      "dateFinished": "2018-10-24 22:35:40.204",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# test out the vector conversion function\ntest_vec \u003d model.userFactors.select(\"features\").first().features\nprint(test_vec)\nprint(encode_array(test_vec))",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:36:22.376",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[-1.272386908531189, -1.040471076965332, 0.6506963968276978, -0.7358267307281494, 0.2215612679719925, -0.24009384214878082, -0.03175492584705353, -0.1631995439529419, 0.3178538382053375, -0.18343225121498108, -0.6073395609855652, 0.30508336424827576, 0.44866761565208435, -0.2556912899017334, 0.1966400444507599, -0.0496751107275486, -0.47266942262649536, -0.45564523339271545, -0.3641686737537384, -0.40033015608787537]\nv/RbsmAAAAC/8KXFAAAAAD/k0oFAAAAAv+eL5IAAAAA/zFweoAAAAL/Ou2UgAAAAv6BCLoAAAAC/xOO5AAAAAD/UV7egAAAAv8d6tUAAAAC/429TYAAAAD/ThnxgAAAAP9y2+GAAAAC/0F0/AAAAAD/JK4BAAAAAv6lvBCAAAAC/3kA3QAAAAL/dKUqgAAAAv9dOiiAAAAC/2Z8CYAAAAA\u003d\u003d\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020409_1954572837",
+      "id": "20181012-130725_84361002",
+      "dateCreated": "2018-10-24 16:33:40.409",
+      "dateStarted": "2018-10-24 22:36:22.407",
+      "dateFinished": "2018-10-24 22:36:22.485",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# 向量转换\nver \u003d model.uid\nmovies_vectors \u003d model.itemFactors.select(\"id\", vector_encode(\"features\").alias(\"embedding_vector\"))\nmovies_vectors.select(\"id\", \"embedding_vector\").show(3)\nusers_vectors \u003d model.userFactors.select(\"id\", vector_encode(\"features\").alias(\"embedding_vector\"))\nusers_vectors.select(\"id\", \"embedding_vector\").show(3)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:37:50.793",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+---+--------------------+\n| id|    embedding_vector|\n+---+--------------------+\n| 10|P7J9OqAAAAA/170Mo...|\n| 20|v9nWNOAAAAA/4BAYw...|\n| 30|v+UP8SAAAAC/4uadQ...|\n+---+--------------------+\nonly showing top 3 rows\n\n+---+--------------------+\n| id|    embedding_vector|\n+---+--------------------+\n| 10|v/RbsmAAAAC/8KXFA...|\n| 20|v9Iyf4AAAAC/2DYJA...|\n| 30|v843hsAAAAA/5EILQ...|\n+---+--------------------+\nonly showing top 3 rows\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020413_1979431310",
+      "id": "20181012-130736_145878894",
+      "dateCreated": "2018-10-24 16:33:40.413",
+      "dateStarted": "2018-10-24 22:37:50.829",
+      "dateFinished": "2018-10-24 22:37:51.173",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# 向量数据写入ES\n# https://www.elastic.co/guide/en/elasticsearch/hadoop/6.3/configuration.html#_operation\nmovies_vectors.write.format(\"es\") \\\n    .option(\"es.mapping.id\", \"id\") \\\n    .option(\"es.write.operation\", \"update\") \\\n    .save(moviesIdx + \"/movies\", mode\u003d\"append\")",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:38:38.945",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020416_1962129332",
+      "id": "20181012-130751_1827979396",
+      "dateCreated": "2018-10-24 16:33:40.416",
+      "dateStarted": "2018-10-24 22:38:38.988",
+      "dateFinished": "2018-10-24 22:38:44.500",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\n# write data to ES, use:\n# - \"id\" as the column to map to ES movie id\n# - \"index\" write mode for ES, since you have not written to the user index previously\n# - \"append\" write mode for Spark\nusers_vectors.write.format(\"es\") \\\n    .option(\"es.mapping.id\", \"id\") \\\n    .option(\"es.write.operation\", \"index\") \\\n    .save(usersIdx + \"/users\", mode\u003d\"append\")",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:38:50.065",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020422_-1987319662",
+      "id": "20181012-130804_724647797",
+      "dateCreated": "2018-10-24 16:33:40.422",
+      "dateStarted": "2018-10-24 22:38:50.115",
+      "dateFinished": "2018-10-24 22:38:52.601",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nes.search(index\u003dmoviesIdx, doc_type\u003d\"movies\", q\u003d\"*\", size\u003d5)[\u0027hits\u0027][\u0027hits\u0027][0:5]",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:39:27.867",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[{u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u00272939\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00271953\u0027, u\u0027movieId\u0027: 2939, u\u0027genres\u0027: [u\u0027drama\u0027, u\u0027thriller\u0027], u\u0027tmdbId\u0027: 19997, u\u0027title\u0027: u\u0027Niagara\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}, {u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u00277020\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00271991\u0027, u\u0027movieId\u0027: 7020, u\u0027genres\u0027: [u\u0027comedy\u0027, u\u0027drama\u0027, u\u0027romance\u0027], u\u0027tmdbId\u0027: 14904, u\u0027title\u0027: u\u0027Proof\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}, {u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u002730892\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00272004\u0027, u\u0027movieId\u0027: 30892, u\u0027genres\u0027: [u\u0027animation\u0027, u\u0027documentary\u0027], u\u0027tmdbId\u0027: 1853, u\u0027title\u0027: u\u0027In the Realms of the Unreal\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}, {u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u002732371\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00271948\u0027, u\u0027movieId\u0027: 32371, u\u0027genres\u0027: [u\u0027crime\u0027, u\u0027drama\u0027, u\u0027film-noir\u0027], u\u0027tmdbId\u0027: 26038, u\u0027title\u0027: u\u0027Call Northside 777\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}, {u\u0027_score\u0027: 1.0, u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_id\u0027: u\u002785565\u0027, u\u0027_source\u0027: {u\u0027release_date\u0027: u\u00272011\u0027, u\u0027movieId\u0027: 85565, u\u0027genres\u0027: [u\u0027comedy\u0027, u\u0027romance\u0027], u\u0027tmdbId\u0027: 58232, u\u0027title\u0027: u\u0027Chalet Girl\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027}]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020428_-1633451045",
+      "id": "20181012-130818_685216619",
+      "dateCreated": "2018-10-24 16:33:40.428",
+      "dateStarted": "2018-10-24 22:39:27.904",
+      "dateFinished": "2018-10-24 22:39:27.921",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### 通过搜索推荐\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 16:33:40.443",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003e通过搜索推荐\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020441_-1427939155",
+      "id": "20181012-130831_688518023",
+      "dateCreated": "2018-10-24 16:33:40.441",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\nfrom IPython.display import HTML\n    \ndef fn_query(query_vec, q\u003d\"*\", cosine\u003dFalse):\n    # https://www.elastic.co/guide/en/elasticsearch/reference/6.3/query-dsl.html\n    \"\"\"\n    Construct an Elasticsearch function score query.\n    \n    The query takes as parameters:\n        - the field in the candidate document that contains the factor vector\n        - the query vector\n        - a flag indicating whether to use dot product or cosine similarity (normalized dot product) for scores\n        \n    The query vector passed in will be the user factor vector (if generating recommended movies for a user)\n    or movie factor vector (if generating similar movies for a given movie)\n    \"\"\"\n    return {\n    \"query\": {\n        \"function_score\": {\n            \"query\" : { \n                \"constant_score\" : {\n                    \"filter\" : {\n                        \"exists\" : { \"field\" : \"embedding_vector\" }\n                    }\n                }\n            },\n            \"functions\": [\n                {\n                    \"script_score\": {\n                        \"script\": {\n                            \"source\": \"vector_scoring\",\n                            \"lang\": \"binary_vector_score\",\n                            \"params\": {\n                                \"vector_field\": \"embedding_vector\",\n                                \"vector\": query_vec\n                            }\n                        }\n                    }\n                }\n            ],\n            \"boost_mode\": \"replace\"\n        }\n    }\n}\n\n\ndef get_similar(the_id, q\u003d\"*\", num\u003d20, index\u003dmoviesIdx, dt\u003d\"movies\"):\n    \"\"\"\n    Given a movie id, execute the recommendation function score query to find similar movies, ranked by cosine similarity\n    \"\"\"\n    response \u003d es.get(index\u003dindex, doc_type\u003ddt, id\u003dthe_id)\n    src \u003d response[\u0027_source\u0027]\n    if \u0027embedding_vector\u0027 in src:\n        raw_vec \u003d src[\u0027embedding_vector\u0027]\n        # our script actually uses the list form for the query vector and handles conversion internally\n        query_vec \u003d decode_float_list(raw_vec)\n        q \u003d fn_query(query_vec, q\u003dq, cosine\u003dTrue)\n        results \u003d es.search(index, dt, body\u003dq, size\u003dnum)\n        hits \u003d results[\u0027hits\u0027][\u0027hits\u0027]\n        return src, hits[1:num+1]\n    \n    \ndef get_user_recs(the_id, q\u003d\"*\", num\u003d20, index\u003dusersIdx):\n    \"\"\"\n    Given a user id, execute the recommendation function score query to find top movies, ranked by predicted rating\n    \"\"\"\n    response \u003d es.get(index\u003dindex, doc_type\u003d\"users\", id\u003dthe_id)\n    src \u003d response[\u0027_source\u0027]\n    if \u0027embedding_vector\u0027 in src:\n        raw_vec \u003d src[\u0027embedding_vector\u0027]\n        # our script actually uses the list form for the query vector and handles conversion internally\n        query_vec \u003d decode_float_list(raw_vec)\n        q \u003d fn_query(query_vec, q\u003dq, cosine\u003dFalse)\n        results \u003d es.search(moviesIdx, \"movies\", body\u003dq, size\u003dnum)\n        hits \u003d results[\u0027hits\u0027][\u0027hits\u0027]\n        return src, hits[:num]\n\ndef get_movies_for_user(the_id, num\u003d20, index\u003dmoviesIdx):\n    \"\"\"\n    Given a user id, get the movies rated by that user, from highest- to lowest-rated.\n    \"\"\"\n    response \u003d es.search(index\u003dratingsIdx, doc_type\u003d\"ratings\", q\u003d\"userId:%s\" % the_id, size\u003dnum, sort\u003d[\"rating:desc\"])\n    hits \u003d response[\u0027hits\u0027][\u0027hits\u0027]\n    ids \u003d [h[\u0027_source\u0027][\u0027movieId\u0027] for h in hits]\n    movies \u003d es.mget(body\u003d{\"ids\": ids}, index\u003dindex, doc_type\u003d\"movies\", _source_include\u003d[\u0027timestamp\u0027, \u0027title\u0027, \u0027movieId\u0027])\n    movies_hits \u003d movies[\u0027docs\u0027]\n    print(movies)\n    tmdbids \u003d [h[\u0027_source\u0027] for h in movies_hits]\n    return tmdbids\n            \ndef display_user_recs(the_id, q\u003d\"*\", num\u003d20, num_last\u003d20, index\u003dusersIdx):\n    user, recs \u003d get_user_recs(the_id, q, num, index)\n    user_movies \u003d get_movies_for_user(the_id, num_last, moviesIdx)\n        \n    # display the movies that this user has rated highly\n    print(\"%html\")\n    print(\"\u003ch2\u003eGet recommended movies for user id %s\u003c/h2\u003e\" % the_id)\n    print(\"\u003ch4\u003e用户评价影片:\u003c/h4\u003e\")\n    \n    print(\"\"\"%table\n    ID\\t曲名\"\"\")\n    table_data \u003d \"\"\n    for movie in user_movies:\n        id \u003d movie[\u0027movieId\u0027]\n        title \u003d movie[\u0027title\u0027]\n        table_data +\u003d \"%d\\t%s\\n\" % (id, title)\n    print(table_data)\n    \n    # now display the recommended movies for the user\n    print(\"%html\")\n    print(\"\u003ch4\u003eRecommended movies:\u003c/h4\u003e\")\n\n    print(\"\"\"%table\n    ID\\t影片名称\\t推荐分\"\"\")\n    \n    table_data \u003d \"\"\n    for rec in recs:\n        r_score \u003d rec[\u0027_score\u0027]\n        r_id \u003d rec[\u0027_source\u0027][\u0027movieId\u0027]\n        r_title \u003d rec[\u0027_source\u0027][\u0027title\u0027]\n        table_data +\u003d \"%d\\t%s\\t%2.3f\\n\" % (r_id, r_title, r_score)\n    print(table_data)\n    \ndef display_similar(the_id, q\u003d\"*\", num\u003d20, index\u003dmoviesIdx, dt\u003d\"movies\"):\n    \"\"\"\n    Display query movie, together with similar movies and similarity scores, in a table\n    \"\"\"\n    movie, recs \u003d get_similar(the_id, q, num, index, dt)\n    \n    print(\"%html\")\n    print(\"\u003ch4\u003e%s\u003c/h4\u003e\" % movie[\u0027title\u0027])\n    \n    print(\"\"\"%table\n    ID\\t曲名\\t推荐分\"\"\")\n    \n    table_data \u003d \"\"\n    for rec in recs:\n        r_score \u003d rec[\u0027_score\u0027]\n        r_id \u003d rec[\u0027_source\u0027][\u0027movieId\u0027]\n        r_title \u003d rec[\u0027_source\u0027][\u0027title\u0027]\n        table_data +\u003d \"%d\\t%s\\t%2.3f\\n\" % (r_id, r_title, r_score)\n    print(table_data)",
+      "user": "admin",
+      "dateUpdated": "2018-10-31 19:02:55.185",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true,
+        "lineNumbers": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020445_-943395059",
+      "id": "20181012-130857_808172849",
+      "dateCreated": "2018-10-24 16:33:40.445",
+      "dateStarted": "2018-10-24 22:56:08.025",
+      "dateFinished": "2018-10-24 22:56:08.043",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndisplay_similar(1223, num\u003d5)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:48:20.581",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 214.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "    ID": "string",
+                      "曲名": "string",
+                      "推荐分": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                },
+                "stackedAreaChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "    ID",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "曲名",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eGrand Day Out with Wallace and Gromit, A\u003c/h4\u003e\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "    ID\t曲名\t推荐分\n2858\tAmerican Beauty\t32.470\n858\tGodfather, The\t32.303\n909\tApartment, The\t32.276\n1136\tMonty Python and the Holy Grail\t32.223\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020450_-1194114433",
+      "id": "20181012-131020_1787500704",
+      "dateCreated": "2018-10-24 16:33:40.450",
+      "dateStarted": "2018-10-24 22:48:20.663",
+      "dateFinished": "2018-10-24 22:48:20.729",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%pyspark\ndisplay_user_recs(2, num\u003d5, num_last\u003d5)",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:56:14.328",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {
+          "1": {
+            "graph": {
+              "mode": "table",
+              "height": 118.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "    ID": "string",
+                      "曲名": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "2": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "    ID": "string",
+                      "曲名": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "3": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "    ID": "string",
+                      "曲名": "string",
+                      "推荐分": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          },
+          "4": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "    ID": "string",
+                      "影片名称": "string",
+                      "推荐分": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "{u\u0027docs\u0027: [{u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 80906, u\u0027title\u0027: u\u0027Inside Job\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027, u\u0027_version\u0027: 2, u\u0027found\u0027: True, u\u0027_id\u0027: u\u002780906\u0027}, {u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 60756, u\u0027title\u0027: u\u0027Step Brothers\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027, u\u0027_version\u0027: 2, u\u0027found\u0027: True, u\u0027_id\u0027: u\u002760756\u0027}, {u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 89774, u\u0027title\u0027: u\u0027Warrior\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027, u\u0027_version\u0027: 2, u\u0027found\u0027: True, u\u0027_id\u0027: u\u002789774\u0027}, {u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 106782, u\u0027title\u0027: u\u0027Wolf of Wall Street, The\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027, u\u0027_version\u0027: 2, u\u0027found\u0027: True, u\u0027_id\u0027: u\u0027106782\u0027}, {u\u0027_type\u0027: u\u0027movies\u0027, u\u0027_source\u0027: {u\u0027movieId\u0027: 131724, u\u0027title\u0027: u\u0027The Jinx: The Life and Deaths of Robert Durst\u0027}, u\u0027_index\u0027: u\u0027ml_movies\u0027, u\u0027_version\u0027: 2, u\u0027found\u0027: True, u\u0027_id\u0027: u\u0027131724\u0027}]}\n"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003ch2\u003eGet recommended movies for user id 2\u003c/h2\u003e\n\u003ch4\u003e用户评价影片:\u003c/h4\u003e\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "    ID\t曲名\n80906\tInside Job\n60756\tStep Brothers\n89774\tWarrior\n106782\tWolf of Wall Street, The\n131724\tThe Jinx: The Life and Deaths of Robert Durst\n"
+          },
+          {
+            "type": "HTML",
+            "data": "\u003ch4\u003eRecommended movies:\u003c/h4\u003e\n"
+          },
+          {
+            "type": "TABLE",
+            "data": "    ID\t影片名称\t推荐分\n110102\tCaptain America: The Winter Soldier\t6.982\n122912\tAvengers: Infinity War - Part I\t6.972\n168252\tLogan\t6.854\n122918\tGuardians of the Galaxy 2\t6.847\n27611\tBattlestar Galactica\t6.807\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020453_-1226058679",
+      "id": "20181012-131040_1027940115",
+      "dateCreated": "2018-10-24 16:33:40.453",
+      "dateStarted": "2018-10-24 22:56:14.389",
+      "dateFinished": "2018-10-24 22:56:14.448",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Elasticsearch搜索",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 16:33:40.454",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eElasticsearch搜索\u003c/h3\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020454_-406075434",
+      "id": "20181012-131210_241130738",
+      "dateCreated": "2018-10-24 16:33:40.454",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%elasticsearch\n\nsearch /ml_movies \n{ \n    \"query\": { \n        \"query_string\": { \n            \"query\": \"Jumanji\" \n        }\n    }\n}\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 22:52:24.677",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {
+                    "columns": [
+                      {
+                        "name": "buildNum",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "defaultIndex",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "description",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "discover:aggs:terms:size",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "fields",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "hits",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "kibanaSavedObjectMeta.searchSourceJSON",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "movieId",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "optionsJSON",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "panelsJSON",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "rating",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "timeFieldName",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "timeRestore",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "timestamp",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "title",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "uiStateJSON",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "userId",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "version",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      },
+                      {
+                        "name": "visState",
+                        "visible": true,
+                        "width": "*",
+                        "sort": {},
+                        "filters": [
+                          {}
+                        ],
+                        "pinned": ""
+                      }
+                    ],
+                    "scrollFocus": {},
+                    "selection": [],
+                    "grouping": {
+                      "grouping": [],
+                      "aggregations": [],
+                      "rowExpandedStates": {}
+                    },
+                    "treeView": {},
+                    "pagination": {
+                      "paginationCurrentPage": 1.0,
+                      "paginationPageSize": 250.0
+                    }
+                  },
+                  "tableColumnTypeState": {
+                    "updated": false,
+                    "names": {
+                      "embedding_vector": "string",
+                      "genres[0]": "string",
+                      "genres[1]": "string",
+                      "genres[2]": "string",
+                      "id": "string",
+                      "movieId": "string",
+                      "release_date": "string",
+                      "title": "string",
+                      "tmdbId": "string"
+                    }
+                  },
+                  "updated": false,
+                  "initialized": false,
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  }
+                },
+                "multiBarChart": {
+                  "rotate": {
+                    "degree": "-45"
+                  },
+                  "xLabelStatus": "default"
+                }
+              },
+              "commonSetting": {},
+              "keys": [
+                {
+                  "name": "buildNum",
+                  "index": 0.0,
+                  "aggr": "sum"
+                }
+              ],
+              "groups": [],
+              "values": [
+                {
+                  "name": "defaultIndex",
+                  "index": 1.0,
+                  "aggr": "sum"
+                }
+              ]
+            },
+            "helium": {}
+          }
+        },
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "embedding_vector\tgenres[0]\tgenres[1]\tgenres[2]\tid\tmovieId\trelease_date\ttitle\ttmdbId\nP7wCcYAAAAA/3Uh+gAAAAD/1YQTAAAAAP+TobsAAAAA/+S2CoAAAAL/m+IAgAAAAv+ieXyAAAAC/7MsQAAAAAL/cb9hgAAAAv+7DRWAAAAA/8TG9oAAAAL/bLb2AAAAAP+bBLEAAAAC/8IUboAAAAL/yCHxAAAAAP9pj6SAAAAC//0zjAAAAAD/dQvaAAAAAv+ndDeAAAADAArSagAAAAA\u003d\u003d\tadventure\tchildren\tfantasy\t2\t2\t1995\tJumanji\t8844\nP6FpBqAAAAA/yA08gAAAAD/vq5iAAAAAv9K2MgAAAAA//G6LYAAAAD++H4QAAAAAv+g6mOAAAAC/6uD7AAAAAD/w0lIgAAAAv/eU8OAAAAA/2EJ6AAAAAD+bV3aAAAAAP9tgKGAAAAC/8563oAAAAL/yeiRgAAAAP+7z/MAAAAC/5iOE4AAAAD/rIi2AAAAAv95m38AAAADABflIwAAAAA\u003d\u003d\taction\tadventure\tchildren\t179401\t179401\t2017\tJumanji: Welcome to the Jungle\t353486\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020455_-908578658",
+      "id": "20181012-100210_879320388",
+      "dateCreated": "2018-10-24 16:33:40.455",
+      "dateStarted": "2018-10-24 22:52:24.177",
+      "dateFinished": "2018-10-24 22:52:24.274",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%elasticsearch\n",
+      "user": "admin",
+      "dateUpdated": "2018-10-24 16:33:40.456",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/undefined",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1540370020455_540250763",
+      "id": "20181023-154210_1702067736",
+      "dateCreated": "2018-10-24 16:33:40.455",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "dev/spark-es-rec",
+  "id": "2DT3ABY5Y",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": [],
+    "elasticsearch:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": true
+  },
+  "info": {}
+}
