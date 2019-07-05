@@ -23,7 +23,7 @@ $ ./bin/zeppelin-daemon.sh start
 ##### Spark
 ```bash
 # http://spark.apache.org/downloads.html
-$ wget https://www.apache.org/dyn/closer.lua/spark/spark-2.3.2/spark-2.3.2-bin-hadoop2.7.tgz
+$ wget https://www-us.apache.org/dist/spark/spark-2.3.3/spark-2.3.3-bin-hadoop2.7.tgz
 $ tar -zxf spark-2.3.2-bin-hadoop2.7.tgz
 ```
 
